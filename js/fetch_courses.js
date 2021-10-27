@@ -24,7 +24,7 @@ function getCourses() {
     //Gör så att denna funktion körs varje gång fönstret laddas 
     coursesEl.innerHTML = '';
 
-    fetch('http://localhost:8080/rest-projekt/courses.php')
+    fetch('http://asaberglund.se/rest-projekt/courses.php')
         .then(response => response.json())
         .then(data => {
             data.forEach(course => {
@@ -42,7 +42,7 @@ function getCourses() {
 
 function deleteCourse(id) {
 
-    fetch("http://localhost:8080/rest-projekt/courses.php?id=" + id, {
+    fetch("http://asaberglund.se/rest-projekt/courses.php?id=" + id, {
         method: 'DELETE',
     })
         .then(response => response.json())
@@ -60,7 +60,7 @@ function addCourse() {
 
     let course = { 'name': name, 'link': link, 'description': description };
 
-    fetch("http://localhost:8080/rest-projekt/courses.php", {
+    fetch("http://asaberglund.se/rest-projekt/courses.php", {
         method: 'POST',
         body: JSON.stringify(course),
     })
@@ -75,7 +75,7 @@ function addCourse() {
 function getCourseById(id) {
     updateCourseEL.innerHTML = '';
 
-    fetch('http://localhost:8080/rest-projekt/courses.php?id=' + id, {
+    fetch('http://asaberglund.se/rest-projekt/courses.php?id=' + id, {
         method: 'GET',
     })
         .then(response => response.json())
@@ -103,7 +103,7 @@ function updateCourse(id) {
     const link = linkInput.value;
 
     let data = { 'name': name, 'link': link, 'description': description };
-    fetch("http://localhost:8080/rest-projekt/courses.php?id=" + id, {
+    fetch("http://asaberglund.se/rest-projekt/courses.php?id=" + id, {
         method: 'PUT',
         body: JSON.stringify(data)
     })

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin</title>
-        <link rel="stylesheet" href="/css/fetch.css">
+        <link rel="stylesheet" href="./css/fetch.css">
 
     </head>
     <body class="fetch">
@@ -110,9 +110,9 @@
         <footer>
 
         </footer>
-        <script src="/js/fetch_courses.js"></script>
-        <script src="/js/fetch_projects.js"></script>
-        <script src="/js/fetch_work.js"></script>
+        <script src="./js/fetch_courses.js"></script>
+        <script src="./js/fetch_projects.js"></script>
+        <script src="./js/fetch_work.js"></script>
 
 
 
