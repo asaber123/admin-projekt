@@ -1,11 +1,13 @@
 <?php
-include("includes/config.php");
+include("config.php");
+include 'classes/user.class.php';
+
 //Made by Åsa Berglund2021
 //check if someone logged in
 if (isset($_SESSION['username'])) {
   $username = ($_SESSION['username']);
 } else {
-  header("Location: index.php?message=2");
+  header("Location: login.php");
 }
 ?>
 <!DOCTYPE html>

@@ -2,7 +2,10 @@
 // Made by Åsa Berglund 2021
 $devmode= true;
 
-include 'classes/user.class.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+  
 
 if($devmode){
     //DB localhost

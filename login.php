@@ -1,4 +1,9 @@
 <?php
+
+include("config.php");
+include 'classes/user.class.php';
+
+
 //If user is not logged in-> index page
 if (isset($_SESSION['username'])) {
     header("Location: admin.php");
@@ -18,7 +23,6 @@ if (isset($_POST['username'])) {
         $message = "<p class='errorMessage'> Password and username did not match </p>";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +43,6 @@ if (isset($_POST['username'])) {
     </header>
     <main>
         <section>
-
-
             <div class="add">
                 <form class="form-login" action="login.php" method="post">
                     <br>

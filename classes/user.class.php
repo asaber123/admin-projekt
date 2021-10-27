@@ -61,13 +61,12 @@
     public function loginUser($username, $password){
         $username = $this->db->real_escape_string($username);
         $password = $this->db->real_escape_string($password);
-
-        $sql = "SELECT password FROM users_portfolio WHERE username= '$username'";
+        
+        $sql = "SELECT * FROM users_portfolio WHERE username= '$username' AND password='$password'";
         //send data to database
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $storedPassword = $row['password'];
+            return true;
         } else {
             return false;
         }
