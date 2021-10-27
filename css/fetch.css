@@ -7,6 +7,7 @@
     color: white;
     text-decoration: none;
 }
+
 header {
     width: 100%;
     text-align: center;
@@ -68,4 +69,15 @@ input{
 }
 .button1:hover{
 background-color: #593d80;
+}
+
+
+/* styling login sida */
+.login{
+    width: 300px;
+    margin: auto;
+
+}
+.form-login{
+    width: 50%;
 }

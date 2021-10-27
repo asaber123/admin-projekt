@@ -1,3 +1,13 @@
+<?php
+include("includes/config.php");
+//Made by Åsa Berglund2021
+//check if someone logged in
+if (isset($_SESSION['username'])) {
+  $username = ($_SESSION['username']);
+} else {
+  header("Location: index.php?message=2");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,7 +28,6 @@
                 <div id="coursesAdmin" class="data">
 
                 </div>
-
                 <div class="add" id="updateCourse">
                     <h2>Lägg till Kurser</h2>
                     <form>
@@ -42,6 +51,7 @@
 
                     </form>
                 </div>
+                
             </section>
             <section>
                 <h2>Arbetslivserfarenhet</h2>
