@@ -39,6 +39,11 @@ if (isset($_SESSION['username'])) {
                         <input class="text-field" type="text" name="name"
                             id="name">
                         <br>
+                        <label for="university">Universitet</label>
+                        <br>
+                        <input class="text-field" type="text" name="university"
+                            id="university">
+                        <br>
                         <label for="namn">Beskrivning</label>
                         <br>
                         <input class="text-field" type="text" name="description"

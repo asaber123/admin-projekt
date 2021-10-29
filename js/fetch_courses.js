@@ -8,6 +8,7 @@ let addCourseBtn = document.getElementById("addCourseBtn");
 let updateCourseBtn = document.getElementById("updateCourseBtn");
 let updateCourseEL = document.getElementById("updateCourse");
 let nameInput = document.getElementById("name");
+let universityInput = document.getElementById("university");
 let descriptionInput = document.getElementById("description");
 let linkInput = document.getElementById("link");
 
@@ -24,13 +25,14 @@ function getCourses() {
     //Gör så att denna funktion körs varje gång fönstret laddas 
     coursesEl.innerHTML = '';
 
-    fetch('http://asaberglund.se/rest-projekt/courses.php')
+    fetch('http://localhost/rest-projekt/courses.php')
         .then(response => response.json())
         .then(data => {
             data.forEach(course => {
                 coursesEl.innerHTML +=
                     "<div class='item'><p>" +
                     "<b>Namn: </b>" + course.name + "<br>" +
+                    "<b> Universitet: "+ course.university+"</b>"
                     "<b>Beskrivning: </b>" + course.description + "<br>" +
                     "<b>Kursplan: </b>" + course.link + "<br>" +
                     "<b>Id: </b>" + course.id + "<br>" +
@@ -42,7 +44,7 @@ function getCourses() {
 
 function deleteCourse(id) {
 
-    fetch("http://asaberglund.se/rest-projekt/courses.php?id=" + id, {
+    fetch("http://localhost/rest-projekt/courses.php?id=" + id, {
         method: 'DELETE',
     })
         .then(response => response.json())
@@ -57,10 +59,11 @@ function addCourse() {
     let name = nameInput.value;
     let description = descriptionInput.value;
     let link = linkInput.value;
+    let university = universityInput.value;
 
-    let course = { 'name': name, 'link': link, 'description': description };
+    let course = { 'name': name, 'link': link, 'description': description, 'university':university };
 
-    fetch("http://asaberglund.se/rest-projekt/courses.php", {
+    fetch("http://localhost/rest-projekt/courses.php", {
         method: 'POST',
         body: JSON.stringify(course),
     })
@@ -75,7 +78,7 @@ function addCourse() {
 function getCourseById(id) {
     updateCourseEL.innerHTML = '';
 
-    fetch('http://asaberglund.se/rest-projekt/courses.php?id=' + id, {
+    fetch('http://localhost/rest-projekt/courses.php?id=' + id, {
         method: 'GET',
     })
         .then(response => response.json())
@@ -85,6 +88,8 @@ function getCourseById(id) {
                     "<h2> Uppdatera Kurs </h2>" +
                     "<form> <label for='namn'>Namn</label> <br>" +
                     "<input class='text-field' type='text' name='name'id='name' value='" + course.name + "'><br>" +
+                    "<label for='namn'>Universitet</label> <br>" +
+                    "<input class='text-field' type='text' name='university' id='university' value='" + course.university + "'><br>" +
                     "<label for='namn'>Beskrivning</label> <br>" +
                     "<input class='text-field' type='text' name='description' id='description' value='" + course.description + "'> <br>" +
                     "<label for='namn'>Länk</label> <br>" +
@@ -97,13 +102,15 @@ function updateCourse(id) {
     const nameInput = document.getElementById("name");
     const descriptionInput = document.getElementById("description");
     const linkInput = document.getElementById("link");
+    const universityInput = document.getElementById("university");
 
     const name = nameInput.value;
     const description = descriptionInput.value;
     const link = linkInput.value;
+    const university = universityInput.value;
 
-    let data = { 'name': name, 'link': link, 'description': description };
-    fetch("http://asaberglund.se/rest-projekt/courses.php?id=" + id, {
+    let data = { 'name': name, 'link': link, 'description': description, 'university': university };
+    fetch("http://localhost/rest-projekt/courses.php?id=" + id, {
         method: 'PUT',
         body: JSON.stringify(data)
     })

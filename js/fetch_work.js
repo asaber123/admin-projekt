@@ -20,7 +20,7 @@ function getWorkExperience(){
     //Gör så att denna funktion körs varje gång fönstret laddas 
     workExperienceEl.innerHTML ='';
 
-    fetch('http://asaberglund.se/rest-projekt/workplaces.php')
+    fetch('http://localhost/rest-projekt/workplaces.php')
     .then(response => response.json())
     .then(data =>{
         data.forEach(work => {
@@ -39,7 +39,7 @@ function getWorkExperience(){
 }
 
 function deleteWorkExperience(id){
-    fetch("http://asaberglund.se/rest-projekt/workplaces.php?id="+ id, {
+    fetch("http://localhost/rest-projekt/workplaces.php?id="+ id, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -58,7 +58,7 @@ function addWorkExperience(){
 
     let course = {'name': WorkName,'date': WorkDate, 'description': WorkDescrition, 'text':WorkTextDescription};
 
-    fetch("http://asaberglund.se/rest-projekt/workplaces.php",{
+    fetch("http://localhost/rest-projekt/workplaces.php",{
         method: 'POST',
         body: JSON.stringify(course),
     })
@@ -73,7 +73,7 @@ function addWorkExperience(){
 function getWorkById(id) {
     updateCourseEL.innerHTML = '';
 
-    fetch('http://asaberglund.se/rest-projekt/workplaces.php?id=' + id, {
+    fetch('http://localhost/rest-projekt/workplaces.php?id=' + id, {
         method: 'GET',
     })
         .then(response => response.json())
@@ -105,7 +105,7 @@ function updateWork(id) {
     const date = WorkDateInput.value;
 
     const work = {'name': name, 'description': description, 'text':text, 'date':date,};
-    fetch('http://asaberglund.se/rest-projekt/workplaces.php?id=' + id, {
+    fetch('http://localhost/rest-projekt/workplaces.php?id=' + id, {
         method: 'PUT',
         body: JSON.stringify(work),
     })

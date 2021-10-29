@@ -19,7 +19,7 @@ function getProjects(){
     //Gör så att denna funktion körs varje gång fönstret laddas 
     projectsEl.innerHTML ='';
 
-    fetch('http://localhost:8080/rest-projekt/projects.php')
+    fetch('http://localhost/rest-projekt/projects.php')
     .then(response => response.json())
     .then(data =>{
         data.forEach(project => {
@@ -37,7 +37,7 @@ function getProjects(){
 }
 
 function deleteProject(id){
-    fetch("http://localhost:8080/rest-projekt/projects.php?id="+ id, {
+    fetch("http://localhost/rest-projekt/projects.php?id="+ id, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -55,7 +55,7 @@ function addProjects(){
 
     let course = {'name': projectName, 'description': projectDescription, 'link':projectLink};
 
-    fetch("http://localhost:8080/rest-projekt/projects.php",{
+    fetch("hthttp://localhost/rest-projekt/projects.php",{
         method: 'POST',
         body: JSON.stringify(course),
     })
@@ -70,7 +70,7 @@ function addProjects(){
 function getProjectById(id) {
     updateCourseEL.innerHTML = '';
 
-    fetch('http://localhost:8080/rest-projekt/projects.php?id=' + id, {
+    fetch('http://localhost/rest-projekt/projects.php?id=' + id, {
         method: 'GET',
     })
         .then(response => response.json())
@@ -98,7 +98,7 @@ function updateProject(id) {
     const link = projectLinkInput.value;
 
     const course = {'name': name, 'description': description, 'link':link};
-    fetch('http://localhost:8080/rest-projekt/projects.php?id=' + id, {
+    fetch('http://localhost/rest-projekt/projects.php?id=' + id, {
         method: 'PUT',
         body: JSON.stringify(course)
     })
