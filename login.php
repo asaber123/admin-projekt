@@ -1,5 +1,7 @@
 <?php
 
+//tail -f /Applications/XAMPP/xamppfiles/logs/php_error_log
+
 include("config.php");
 include 'classes/user.class.php';
 

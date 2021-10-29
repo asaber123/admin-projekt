@@ -22,7 +22,8 @@ if (isset($_SESSION['username'])) {
     </head>
     <body class="fetch">
         <header>
-            <h1>Admin</h1>
+            <h1>Admin</h1><br>
+            <a href="logout.php"> <button> Logga ut </button></div></a>
         </header>
         <main>
             <section>
