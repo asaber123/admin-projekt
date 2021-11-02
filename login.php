@@ -45,6 +45,7 @@ if (isset($_POST['username'])) {
     </header>
     <main>
         <section>
+            <!-- login form -->
             <div class="add">
                 <form class="form-login" action="login.php" method="post">
                     <br>
@@ -60,6 +61,7 @@ if (isset($_POST['username'])) {
 
                 </form>
                 <div>
+                    <!-- if username and password is not matched, an error message will be shown -->
                     <?php
                     if (isset($message)) {
                         echo $message;

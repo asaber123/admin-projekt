@@ -75,6 +75,9 @@ input{
 .button1:hover{
 background-color: #593d80;
 }
+.errorMessage{
+    color: red;
+}
 
 
 /* styling login page */

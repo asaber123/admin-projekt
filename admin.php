@@ -3,7 +3,7 @@ include("config.php");
 include 'classes/user.class.php';
 
 //Made by Åsa Berglund2021
-//check if someone logged in
+//check if someone logged in, if not user will be transfered to login page
 if (isset($_SESSION['username'])) {
     $username = ($_SESSION['username']);
 } else {
@@ -11,7 +11,7 @@ if (isset($_SESSION['username'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 
 <head>
     <meta charset="UTF-8">
@@ -28,6 +28,7 @@ if (isset($_SESSION['username'])) {
         <a href="logout.php"> <button> Logga ut </button></div></a>
     </header>
     <main>
+        <!-- section for adding, updating and deleting courses -->
         <section>
             <h2>Kurser</h2>
             <div id="coursesAdmin" class="data">
@@ -58,6 +59,7 @@ if (isset($_SESSION['username'])) {
             </div>
 
         </section>
+                <!-- section for adding, updating and deleting working experince -->
         <section>
             <h2>Arbetslivserfarenhet</h2>
             <div id="workExperienceAdmin" class="data">
@@ -86,6 +88,7 @@ if (isset($_SESSION['username'])) {
                 </form>
             </div>
         </section>
+                <!-- section for adding, updating and deleting projects -->
         <section>
             <h2>Projekt</h2>
             <div id="projectsAdmin" class="data">
@@ -114,11 +117,10 @@ if (isset($_SESSION['username'])) {
     <footer>
 
     </footer>
+    <!-- script tags -->
     <script src="./js/fetch_courses.js"></script>
     <script src="./js/fetch_projects.js"></script>
     <script src="./js/fetch_work.js"></script>
-
-
 
 </body>
 
