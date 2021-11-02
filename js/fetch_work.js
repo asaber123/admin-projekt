@@ -1,4 +1,4 @@
-//Variables to courses
+//Get elements from html and creates variables
 let workExperienceEl = document.getElementById("workExperienceAdmin");
 let updateWorkEl = document.getElementById("updateWork");
 let addWorkBtn = document.getElementById("addWorkBtn");
@@ -8,21 +8,20 @@ let WorkDescriptionInput = document.getElementById("WorkDescription");
 let WorkDateInput = document.getElementById("WorkDate");
 
 
-//Händelselyssnare
+//Adding eventlisteners which will start different funcions on events. 
 window.addEventListener('load', getWorkExperience);
 addWorkBtn.addEventListener('click', addWorkExperience);
 
 
-//Funktioner som läser in fetch anrop
-
-//Funktion för att hämta kurser från rest-api
+//Function that gets data witgh work-experience from the rest-api.
 function getWorkExperience(){
-    //Gör så att denna funktion körs varje gång fönstret laddas 
+    //Everytime the window reloads, the element will get empty.
     workExperienceEl.innerHTML ='';
-
+    //Fetching data from rest-api workplaces
     fetch('http://localhost/rest-projekt/workplaces.php')
     .then(response => response.json())
     .then(data =>{
+        //printing out fetched data to the html element stored in the object work. 
         data.forEach(work => {
             console.log(work);
             workExperienceEl.innerHTML += 
@@ -37,48 +36,56 @@ function getWorkExperience(){
         })
     })
 }
-
+//when delete button is clicked this funciton starts. 
 function deleteWorkExperience(id){
+    //Fetching the rest-api with delete request. 
     fetch("http://localhost/rest-projekt/workplaces.php?id="+ id, {
         method: 'DELETE',
     })
     .then(response => response.json())
+    //After request is done workExperience are reloded again. 
     .then(data =>{
         getWorkExperience();
     })
+    //If something goes wrong, an error message will be shown. 
     .catch(error =>{
-        console.log('Error:', error);
+        console.log('Felmeddelande:', error);
     })
 }
+//When the user in the admin page is filling in the form and klick the button "lägg till" this funciton will start
 function addWorkExperience(){
     let WorkName= WorkNameInput.value;
     let WorkDate= WorkDateInput.value;
     let WorkTextDescription = WorkTextInput.value;
     let WorkDescrition= WorkDescriptionInput.value;
-
-    let course = {'name': WorkName,'date': WorkDate, 'description': WorkDescrition, 'text':WorkTextDescription};
-
+    //Adding the values into the object work
+    let work = {'name': WorkName,'date': WorkDate, 'description': WorkDescrition, 'text':WorkTextDescription};
+    //Fetching dtaa to workplaces api with the request post. 
     fetch("http://localhost/rest-projekt/workplaces.php",{
         method: 'POST',
-        body: JSON.stringify(course),
+        body: JSON.stringify(work),
     })
     .then(response => response.json())
+    //After request is done workExperience are reloded again. 
     .then(data =>{
         getWorkExperience();
     })
+    //If something goes wrong, an error message will be shown. 
     .catch(error =>{
-        console.log('Error:', error);
+        console.log('Felmeddelande:', error);
     })
 }
+//when the button "uppdatera" is clicked, this function will start. 
 function getWorkById(id) {
-    updateCourseEL.innerHTML = '';
-
+    updateWorkEl.innerHTML = '';
+    //Fetching to API workplaces with an id and GET request. 
     fetch('http://localhost/rest-projekt/workplaces.php?id=' + id, {
         method: 'GET',
     })
         .then(response => response.json())
         .then(data => {
             data.forEach(work => {
+            //instead of showing the form to add work, a new form will be shown that sais update work and with the data of the work that should be updated. 
                 updateWorkEl.innerHTML=
                     "<h2> Uppdatera Kurs </h2>" +
                     "<form> <label for='Namn'>Namn</label> <br>" +
@@ -93,7 +100,9 @@ function getWorkById(id) {
             })
         })
 }
+//when the button "uppdatera" is clicked, this funciton will start. 
 function updateWork(id) {
+    //Declaring variables again to get the value from the new data filled into the form
     const WorkNameInput = document.getElementById("WorkName");
     const WorkTextInput = document.getElementById("WorkText");
     const WorkDescriptionInput = document.getElementById("WorkDescription");
@@ -103,18 +112,20 @@ function updateWork(id) {
     const text = WorkTextInput.value;
     const description = WorkDescriptionInput.value;
     const date = WorkDateInput.value;
-
+    //Adding dtaa into the object data. 
     const work = {'name': name, 'description': description, 'text':text, 'date':date,};
+    //Doing a fetch call to the api courses with the method put and an id sent. 
     fetch('http://localhost/rest-projekt/workplaces.php?id=' + id, {
         method: 'PUT',
         body: JSON.stringify(work),
     })
         .then(response => response.json())
+        //After method is sent the function getWorkExperience will start again. 
         .then(work => {
-            getProjects();
+            getWorkExperience();
         })
         .catch(error => {
-            console.log('Error:', error);
+            console.log('Felmeddelande:', error);
         })
 
 }

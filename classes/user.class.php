@@ -10,57 +10,11 @@
             die("Fel vid anlutning:" . $this->db->connect_error);
         }
     } 
-    //set name, chec if size is bigger than 2 characters
-    public function setName(string $name): bool
-    {
-        if (strlen($name) > 1) {
-            $this->name = $name;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    //set username check if size is bigger than 2 characters
-    public function setUsername(string $username): bool
-    {
-        if (strlen($username) > 1) {
-            $this->username = $username;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //set password check if size is bigger than 7 characters and that they are matching
-    public function setPassword(string $password, string $password2): bool
-    {   if ($password == $password2 && strlen($password) > 6){
-            $this->password = $password;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    //get name 
-    public function getName(string $name): string
-    {
-        return $this->name;
-    }
-
-
-    //get username
-    public function getUsername(string $name): string
-    {
-        return $this->username;
-    }
-    //get db
-    public function getdb(){
-        return $this->db;
-    }
 
     //logg in user
     public function loginUser($username, $password){
-        $username = $this->db->real_escape_string($username);
-        $password = $this->db->real_escape_string($password);
+        $this->username = mysqli_real_escape_string($this->db, $username);
+        $this->password = mysqli_real_escape_string($this->db, $password);
         
         $sql = "SELECT * FROM users_portfolio WHERE username= '$username' AND password='$password'";
         //send data to database

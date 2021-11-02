@@ -1,3 +1,5 @@
+/* Simple stylig for admin page to Åsa Berglund portfolio */
+
 .fetch {
     width: 100%;
     background-color: #1E0540;
@@ -75,7 +77,7 @@ background-color: #593d80;
 }
 
 
-/* styling login sida */
+/* styling login page */
 .login{
     width: 300px;
     margin: auto;
