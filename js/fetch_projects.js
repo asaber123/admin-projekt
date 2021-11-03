@@ -19,7 +19,7 @@ function getProjects(){
     //Everytime the window reloads, the element will get empty.
     projectsEl.innerHTML ='';
     //Fetching data from rest-api projects
-    fetch('http://localhost/rest-projekt/projects.php')
+    fetch('http://asaberglund.se/rest-projekt/projects.php')
     .then(response => response.json())
     .then(data =>{
         data.forEach(project => {
@@ -27,10 +27,10 @@ function getProjects(){
             //printing out fetched data to the html element stored in the object project. 
             projectsEl.innerHTML += 
             "<div class='item'><p>"+
-            "<b>Namn: </b>" + project.name + "<br>" +
-            "<b>Beskrivning: </b>" + project.description + "<br>" +
-            "<b>Länk: </b>" + project.link + "<br>" +
-            "<b>Id: </b>" + project.id + "<br>" +
+            "<b>Namn: </b>" + project.name + "<br><br>" +
+            "<b>Beskrivning: </b>" + project.description + "<br><br>" +
+            "<b>Länk: </b>" + project.link + "<br><br>" +
+            "<b>Id: </b>" + project.id + "<br><br>" +
             "</p> <button class='button2' id='" + project.id + "' onClick='getProjectById(" + project.id + ")'> Uppdatera </button>" +
             "<button class='button2' id='"+ project.id +"' onClick='deleteProject("+ project.id +")'> Radera </button></div> ";
         })
@@ -39,7 +39,7 @@ function getProjects(){
 //when delete button is clicked this funciton starts. 
 function deleteProject(id){
     //Fetching the rest-api with delete request. 
-    fetch("http://localhost/rest-projekt/projects.php?id="+ id, {
+    fetch("http://asaberglund.se/rest-projekt/projects.php?id="+ id, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -61,7 +61,7 @@ function addProjects(){
     //Adding the values into the object project
     let project = {'name': projectName, 'description': projectDescription, 'link':projectLink};
     //Fetching dtaa to courses api with the request post. 
-    fetch("hthttp://localhost/rest-projekt/projects.php",{
+    fetch("http://asaberglund.se/rest-projekt/projects.php",{
         method: 'POST',
         body: JSON.stringify(project),
     })
@@ -80,21 +80,21 @@ function addProjects(){
 function getProjectById(id) {
     updateProjectEL.innerHTML = '';
     //Fetching to API projects with an id and GET request. 
-    fetch('http://localhost/rest-projekt/projects.php?id=' + id, {
+    fetch('http://asaberglund.se/rest-projekt/projects.php?id=' + id, {
         method: 'GET',
     })
         .then(response => response.json())
         .then(data => {
             //instead of showing the form to add project, a new form will be shown that sais update project and with the data of the course that should be updated. 
             data.forEach(project => {
-                updateProjectEL.innerHTML=
+                projectsEl.innerHTML=
                     "<h2> Uppdatera Kurs </h2>" +
-                    "<form> <label for='namn'>Namn</label> <br>" +
-                    "<input class='text-field' type='text' name='ProjectName'id='ProjectName' value='" + project.name + "'><br>" +
-                    "<label for='namn'>Länk</label> <br>" +
-                    "<input class='text-field' type='text' name='ProjectLink' id='ProjectLink' value='" + project.link + "'> <br>" +
-                    "<label for='namn'>Beskrivning av projekt</label> <br>" +
-                    "<input class='text-field' type='text' name='ProjectDescription' id='ProjectDescription' value = '" + project.description+ "'> <br>" +
+                    "<form> <label for='namn'>Namn</label> <br><br>" +
+                    "<input class='text-field' type='text' name='ProjectName'id='ProjectName' value='" + project.name + "'><br><br>" +
+                    "<label for='namn'>Länk</label> <br><br>" +
+                    "<input class='text-field' type='text' name='ProjectLink' id='ProjectLink' value='" + project.link + "'> <br><br>" +
+                    "<label for='namn'>Beskrivning av projekt</label> <br><br>" +
+                    "<input class='text-field' type='text' name='ProjectDescription' id='ProjectDescription' value = '" + project.description+ "'> <br><br>" +
                     " <input class='button1' type='submit' value='Uppdatera kurs' id='submit' onClick='updateProject(" + project.id + ")'>";
             })
         })
@@ -112,7 +112,7 @@ function updateProject(id) {
     //Adding dtaa into the object project. 
     const project = {'name': name, 'description': description, 'link':link};
     //Doing a fetch call to the api projects with the method put and an id sent. 
-    fetch('http://localhost/rest-projekt/projects.php?id=' + id, {
+    fetch('http://asaberglund.se/rest-projekt/projects.php?id=' + id, {
         method: 'PUT',
         body: JSON.stringify(project)
     })

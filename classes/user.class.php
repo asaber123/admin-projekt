@@ -11,7 +11,7 @@
         }
     } 
 
-    //logg in user
+    //funtion to log in user and to check if password and username are correct
     public function loginUser($username, $password){
         $this->username = mysqli_real_escape_string($this->db, $username);
         $this->password = mysqli_real_escape_string($this->db, $password);

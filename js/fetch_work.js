@@ -18,7 +18,7 @@ function getWorkExperience(){
     //Everytime the window reloads, the element will get empty.
     workExperienceEl.innerHTML ='';
     //Fetching data from rest-api workplaces
-    fetch('http://localhost/rest-projekt/workplaces.php')
+    fetch('http://asaberglund.se/rest-projekt/workplaces.php')
     .then(response => response.json())
     .then(data =>{
         //printing out fetched data to the html element stored in the object work. 
@@ -26,11 +26,11 @@ function getWorkExperience(){
             console.log(work);
             workExperienceEl.innerHTML += 
             "<div class='item'><p>"+
-            "<b>Namn: </b>" + work.name + "<br>" +
-            "<b>Datum: </b>" + work.date + "<br>" +
-            "<b>Beskrivning/titel av jobb: </b>" + work.description + "<br>" +
-            "<b>Beskrivning-text: </b>" + work.text + "<br>" +
-            "<b>Id: </b>" + work.id + "<br>" +
+            "<b>Namn: </b>" + work.name + "<br><br>" +
+            "<b>Datum: </b>" + work.date + "<br><br>" +
+            "<b>Beskrivning/titel av jobb: </b>" + work.description + "<br><br>" +
+            "<b>Beskrivning-text: </b>" + work.text + "<br><br>" +
+            "<b>Id: </b>" + work.id + "<br><br>" +
             "</p> <button class='button2' id='" + work.id + "' onClick='getWorkById(" + work.id + ")'> Uppdatera </button>" +
             " <button class='button2' id='"+ work.id +"' onClick='deleteWorkExperience("+ work.id +")'> Radera </button></div> ";
         })
@@ -39,7 +39,7 @@ function getWorkExperience(){
 //when delete button is clicked this funciton starts. 
 function deleteWorkExperience(id){
     //Fetching the rest-api with delete request. 
-    fetch("http://localhost/rest-projekt/workplaces.php?id="+ id, {
+    fetch("http://asaberglund.se/rest-projekt/workplaces.php?id="+ id, {
         method: 'DELETE',
     })
     .then(response => response.json())
@@ -61,7 +61,7 @@ function addWorkExperience(){
     //Adding the values into the object work
     let work = {'name': WorkName,'date': WorkDate, 'description': WorkDescrition, 'text':WorkTextDescription};
     //Fetching dtaa to workplaces api with the request post. 
-    fetch("http://localhost/rest-projekt/workplaces.php",{
+    fetch("http://asaberglund.se/rest-projekt/workplaces.php",{
         method: 'POST',
         body: JSON.stringify(work),
     })
@@ -79,23 +79,23 @@ function addWorkExperience(){
 function getWorkById(id) {
     updateWorkEl.innerHTML = '';
     //Fetching to API workplaces with an id and GET request. 
-    fetch('http://localhost/rest-projekt/workplaces.php?id=' + id, {
+    fetch('http://asaberglund.se/rest-projekt/workplaces.php?id=' + id, {
         method: 'GET',
     })
         .then(response => response.json())
         .then(data => {
             data.forEach(work => {
             //instead of showing the form to add work, a new form will be shown that sais update work and with the data of the work that should be updated. 
-                updateWorkEl.innerHTML=
+                workExperienceEl.innerHTML=
                     "<h2> Uppdatera Kurs </h2>" +
-                    "<form> <label for='Namn'>Namn</label> <br>" +
-                    "<input class='text-field' type='text' name='WorkName'id='WorkName' value='" + work.name + "'><br>" +
-                    "<label for='namn'>Datum</label> <br>" +
-                    "<input class='text-field' type='text' name='WorkDate' id='WorkDate' value='" + work.date + "'> <br>" +
-                    "<label for='namn'>Beskrivning/titel av jobb</label> <br>" +
-                    "<input class='text-field' type='text' name='WorkDescription' id='WorkDescription' value = '" + work.description+ "'> <br>" +
-                    "<label for='namn'>Beskrivande-text</label> <br>" +
-                    "<input class='text-field' type='text' name='WorkText' id='WorkText' value = '" + work.text+ "'> <br>" +
+                    "<form> <label for='Namn'>Namn</label> <br><br><br>" +
+                    "<input class='text-field' type='text' name='WorkName'id='WorkName' value='" + work.name + "'><br><br>" +
+                    "<label for='namn'>Datum</label> <br><br>" +
+                    "<input class='text-field' type='text' name='WorkDate' id='WorkDate' value='" + work.date + "'> <br><br>" +
+                    "<label for='namn'>Beskrivning/titel av jobb</label><br> <br>" +
+                    "<input class='text-field' type='text' name='WorkDescription' id='WorkDescription' value = '" + work.description+ "'><br> <br>" +
+                    "<label for='namn'>Beskrivande-text</label> <br><br>" +
+                    "<input class='text-field' type='text' name='WorkText' id='WorkText' value = '" + work.text+ "'> <br><br>" +
                     " <input class='button1' type='submit' value='Uppdatera' id='submit' onClick='updateWork(" + work.id + ")'>";
             })
         })
@@ -115,7 +115,7 @@ function updateWork(id) {
     //Adding dtaa into the object data. 
     const work = {'name': name, 'description': description, 'text':text, 'date':date,};
     //Doing a fetch call to the api courses with the method put and an id sent. 
-    fetch('http://localhost/rest-projekt/workplaces.php?id=' + id, {
+    fetch('http://asaberglund.se/rest-projekt/workplaces.php?id=' + id, {
         method: 'PUT',
         body: JSON.stringify(work),
     })

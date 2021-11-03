@@ -8,7 +8,7 @@ include 'classes/user.class.php';
 
 //If user is not logged in-> index page
 if (isset($_SESSION['username'])) {
-    header("Location: admin.php");
+    header("Location: index.php");
 }
 
 //controll log in, sets variables if submit button is clicked

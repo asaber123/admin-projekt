@@ -1,6 +1,6 @@
 <?php
 // Made by Åsa Berglund 2021
-$devmode= true;
+$devmode= false;
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
