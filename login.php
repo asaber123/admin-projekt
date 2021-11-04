@@ -20,7 +20,7 @@ if (isset($_POST['username'])) {
     $users = new User();
     if ($users->loginUser($username, $password)) {
         $_SESSION['username'] = $username;
-        header("Location: admin.php");
+        header("Location: index.php");
     } else {
         $message = "<p class='errorMessage'> Password and username did not match </p>";
     }
